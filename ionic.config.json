@@ -1,0 +1,8 @@
+{
+  "name": "srugim-app",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

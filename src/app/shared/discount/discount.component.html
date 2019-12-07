@@ -1,0 +1,67 @@
+<ion-item-group class="event-wrapper" no-padding>
+  <ion-item lines="none">
+    <ion-grid no-padding>
+      <ion-row no-padding>
+        <ion-col size="12">
+          <ion-note class="date-item">{{ campaign.starts_at | date:'yy/MM/dd HH:mm' }} עד {{ campaign.ends_at |
+            date:'HH:mm'}}</ion-note>
+        </ion-col>
+
+      </ion-row>
+      <ion-row no-padding (click)="showDetails()">
+
+
+
+        <ion-row no-padding>
+          <ion-col size="6">
+            <ion-img [src]="campaign.image_path"></ion-img>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-item lines="none" no-padding>
+              <ion-label class="title">{{campaign.title}}</ion-label>
+            </ion-item>
+            <ion-col *ngIf="campaign.price > 0" size="12"><s> {{campaign.price}} </s> &#8362; </ion-col>
+            <ion-col *ngIf="campaign.new_price > 0" size="12">{{campaign.new_price}} &#8362; </ion-col>
+          </ion-col>
+        </ion-row>
+
+
+
+
+        <ion-col size="12" class="price-phone">
+          <ion-row dir="ltr" *ngIf="isTouched">
+            <ion-col size="12">
+              <p>{{campaign.description}}</p>
+            </ion-col>
+
+            <ion-col size="12">
+              <ion-note>
+                <ion-icon style="vertical-align: center;" name="locate"></ion-icon>{{ campaign.location }}
+              </ion-note>
+            </ion-col>
+            <ion-col size="4"></ion-col>
+            <ion-col size="5">
+           
+           
+              <div style="vertical-align: center;">
+                  <a href="tel:{{campaign.phone}}">{{campaign.phone }}  </a>
+                <ion-icon text-center  name="call" slot="start"></ion-icon>
+              </div>
+              
+           
+          </ion-col>
+            <!-- <ion-col size="1">
+              <ion-icon name="call"></ion-icon>
+            </ion-col> -->
+
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+
+
+    </ion-grid>
+  </ion-item>
+
+</ion-item-group>

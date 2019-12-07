@@ -1,0 +1,95 @@
+<app-header></app-header>
+<ion-content class="body"  dir="rtl">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="מרענן...">
+          </ion-refresher-content>
+      </ion-refresher>
+  <ion-list class="body">
+    <ion-list-header class="body" no-padding>
+      <ion-grid fixed>
+        <ion-row>
+        <ion-col size="3">
+            <ion-label class="page-title">חדשות</ion-label>
+          </ion-col>
+          <ion-col size="9">
+            <hr>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list-header>
+
+    <ion-item-group class="event-wrapper" *ngFor="let article of articles" no-padding>
+      <ion-item lines="none">
+        <ion-grid no-padding>
+        <ion-row no-padding>
+            <ion-col size="12" no-padding>
+              <ion-item lines="none" no-padding>
+               <ion-label class="title">{{article.title}}</ion-label> 
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col size="7">
+              <!-- <ion-note class="date-item">{{ event.starts_at | date:'yy/MM/dd HH:mm' }} עד {{ event.ends_at | date:'HH:mm'}}</ion-note> -->
+            </ion-col>
+            <ion-col size="5">
+              <ion-row dir="ltr">
+                <ion-col size="6">
+                      <!-- <ion-icon *ngFor="let type of event.types" class="type-icon" [name]="type.name"></ion-icon> -->
+                </ion-col>
+                <!-- <ion-col *ngIf="event.price > 0" size="6">{{event.price}} &#8362;</ion-col> -->
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <!-- <ion-note><ion-icon style="vertical-align: center;" name="locate"></ion-icon>{{ event.location }}</ion-note> -->
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <p>{{article.description}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="12" [routerLink]="[ '/news/view', article.id ]">
+                  <ion-img [src]="article.image_path"></ion-img>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+        </ion-item>
+        <ion-item>
+          <ion-grid>
+          <ion-row>
+            <ion-col size="12" no-padding>
+              <!-- <ion-item class="btn-item" lines="none" no-padding>
+                <ion-button  size="default" expand="block" color="primary" shape="round" *ngIf="event.url !== null"  (click)="onPurchase(event.url)">
+                    <ion-icon slot="start" name="add"></ion-icon>הרשמה לאירוע
+                </ion-button>
+                  <ion-buttons class="social-group" no-padding>
+                    <ion-button (click)="onShareFacebook(event)">
+                      <ion-icon class="social" style="color: #3b5998;" slot="icon-only" name="logo-facebook"></ion-icon>
+                    </ion-button>
+                  <ion-button (click)="onShareWhatsapp(event)">
+                    <ion-icon class="social" style="color: #1EBEA5;" slot="icon-only" name="logo-whatsapp"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+            </ion-item> -->
+
+            </ion-col>
+            <!-- <ion-col size="5" no-padding>
+       
+            </ion-col> -->
+          </ion-row>
+        </ion-grid>
+        </ion-item>
+    </ion-item-group>
+    
+  </ion-list>
+  
+</ion-content>
+    

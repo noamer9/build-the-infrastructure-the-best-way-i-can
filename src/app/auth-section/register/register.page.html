@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+
+<ion-content class="register-body" ion-no-padding >
+  <h1 class="head">הרשמה</h1>
+    <a [routerLink]="[ '/auth/login']">כבר נרשמתם? להתחברות</a>
+    <form [formGroup]="form" (ngSubmit)="register(form)">
+      <ion-grid>
+        <ion-row  justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div padding>
+                <ion-input
+                [ngStyle]="{'border': form.controls['email'].errors && !form.controls['email'].pristine ? '2px solid red' : ''}"
+ 
+                class="register-style register-input" 
+                expand="block" 
+                shape="round" 
+                inputmode="email"
+                name="email" 
+                type="email" 
+                placeholder="your@email.com" 
+                formControlName="email" 
+                required></ion-input>
+                <div *ngIf="form.controls['email'].errors && !form.controls['email'].pristine" class="error-msg">
+                    <ion-note style="color:red;" [hidden]="!form.controls['email'].errors.required">יש להכניס מייל</ion-note>
+                    <ion-note style="color:red;" [hidden]="!form.controls['email'].errors.pattern || !form.controls['email'].errors.email"> יש להכניס מייל תקני</ion-note>
+                </div>
+                <ion-input 
+                [ngStyle]="{'border': form.controls['phone'].errors && !form.controls['phone'].pristine ? '2px solid red' : ''}"
+
+                class="register-style register-input" 
+                expand="block" 
+                shape="round" 
+                inputmode="tel"
+                name="phone"
+                type="tel"
+                placeholder="050555555"
+                formControlName="phone"
+                required></ion-input>
+                <div *ngIf="form.controls['phone'].errors && !form.controls['phone'].pristine" class="error-msg">
+                    <ion-note style="color:red;" [hidden]="!form.controls['phone'].errors.required && !form.controls['phone'].errors.minLength">יש להכניס טלפון</ion-note>
+                    <ion-note style="color:red;" [hidden]="form.controls['phone'].errors.minLength"> יש להכניס מספר תקני</ion-note>
+                </div>
+                <ion-input 
+                [ngStyle]="{'border': form.controls['password'].errors && !form.controls['password'].pristine ? '2px solid red' : ''}"
+
+                class="register-style register-input" 
+                expand="block" 
+                shape="round" 
+                name="password"
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+                required></ion-input>
+                <div *ngIf="form.controls['password'].errors && !form.controls['password'].pristine" class="error-msg">
+                    <ion-note style="color:red;" [hidden]="!form.controls['password'].errors.required && !form.controls['password'].errors.minLength">יש להכניס סיסמא</ion-note>
+                    <ion-note style="color:red;" [hidden]="form.controls['password'].errors.minLength || form.controls['password'].errors.maxLength">סיסמא חייבת להכיל בין 8 ל 12 תווים</ion-note>
+                </div>
+                <ion-input 
+                [ngStyle]="{'border': form.controls['confirmPassword'].errors && !form.controls['confirmPassword'].pristine ? '2px solid red' : ''}"
+
+                class="register-style register-input" 
+                expand="block" 
+                shape="round" 
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                formControlName="confirmPassword"
+                required></ion-input>
+                <div *ngIf="form.controls['confirmPassword'].errors && !form.controls['confirmPassword'].pristine" class="error-msg">
+                    <ion-note style="color:red;" [hidden]="!form.controls['confirmPassword'].errors.required && !form.controls['confirmPassword'].errors.PasswordValidator">יש להכניס סיסמא</ion-note>
+                    <ion-note style="color:red;" [hidden]="form.controls['confirmPassword'].errors.PasswordValidator">סיסמא לא זהה</ion-note>
+                </div>
+            </div>
+            <div padding>
+              <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block" shape="round">הבא</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>
+  
+  

@@ -1,0 +1,58 @@
+  
+  <ion-item dir="rtl" class="comment-card">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="3">
+          <ion-icon style="margin-top: 10px;" *ngIf="comment.user.info === null" slot="start" name="contact"></ion-icon>
+          <ion-avatar style="margin-top: 10px;">
+            <img  *ngIf="comment.user.info !== null" [src]="comment.user.info.avatar" alt="תמונה חסרה">
+          </ion-avatar>
+      </ion-col>
+      <ion-col size="9">
+          <ion-note *ngIf="comment.user.info === null">{{ comment.created_at | date:'dd/MM/yyyy HH:mm' }} אזרח</ion-note>
+          <ion-note *ngIf="comment.user.info !== null">{{ comment.created_at | date:'dd/MM/yyyy HH:mm' }} {{ comment.user.info.first_name }}</ion-note>
+          <p style="margin: 0;"> {{ comment.body }}</p> 
+          <ion-note class="likes" *ngIf="comment.likes > 0" dir="ltr">{{ comment.likes }} <ion-icon  name="thumbs-up"></ion-icon></ion-note>
+          
+          <ion-row>
+              <ion-col size="6">
+                  <ion-item no-padding lines="none">
+                      <a style="font-size: 14px;
+                      font-weight: 600;" class="clickable" (click)="onRespond()" expand="block">
+                            הגב לתגובה 
+                          </a>     
+                  </ion-item>    
+              </ion-col>
+              <ion-col size="6" dir="ltr">
+                <ion-button [disabled]="!canLike" fill="clear" (click)="like()">
+                  <ion-icon class="like-icon" slot="icon-only" name="thumbs-up" ></ion-icon>
+                </ion-button>
+                <ion-button [disabled]="!canDislike" fill="clear" (click)="dislike()">
+                  <ion-icon class="like-icon" slot="icon-only" name="thumbs-down"></ion-icon>
+                </ion-button>          
+              </ion-col>
+            </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">
+        </ion-col>
+      <ion-col size="9">
+            <a class="clickable comments" *ngIf="comment.subComments && comment.subComments.length > 0" (click)="viewSubComments = !viewSubComments">
+              <ion-icon name="undo"></ion-icon>
+              {{comment.subComments.length}} תגובות
+            </a>
+          </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    
+  </ion-item>
+
+  <div class="comment-wrapper" *ngIf="viewSubComments">
+    <!-- <div-header>
+      <ion-button *ngIf="viewSubComments" >סגור תגובות</ion-button>
+    </div-header> -->
+    <app-comment class="comment-wrapper" *ngFor="let comment of comment.subComments" [comment]="comment" [isArticle]="isArticle"></app-comment>
+  </div>

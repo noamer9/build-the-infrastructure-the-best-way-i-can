@@ -1,0 +1,27 @@
+.head {
+    color: #398dcb;
+    font-weight: 600;
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+.register-body {
+    background-color: #bbd0e4;
+    --ion-background-color:#bbd0e4;
+}
+
+.register-style {
+    height: 50px;
+    margin: 10px 0;
+
+}
+
+.register-input {
+    --placeholder-opacity: 0.5;
+    --background: #fff;
+    border-radius: 15px;
+    opacity: 0.8;
+    padding-right: 15px !important; 
+}
+

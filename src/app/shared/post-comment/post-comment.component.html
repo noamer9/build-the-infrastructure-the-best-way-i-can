@@ -1,0 +1,26 @@
+  <ion-grid fixed dir="rtl" >
+    <ion-row>
+      <!-- <ion-col size="12">
+          <ion-button size="small" expand="block" (click)="onOpenComment()" *ngIf="!isComment">
+              הגב
+          </ion-button>
+      </ion-col> -->
+    <ion-col size="12" *ngIf="isComment">
+          <!-- <ion-buttons>
+              <ion-button style="font-size: 10px;" size="small" color="danger" (click)="isComment = false" >
+                  <ion-icon slot="icon-only"  name="close"></ion-icon>
+                </ion-button>    
+          </ion-buttons> -->
+      <ion-row>
+          <ion-col size="8">
+              <ion-textarea class="text-area" placeholder="כתוב תגובה..." [(ngModel)]="postContent" #textarea></ion-textarea>
+            </ion-col>
+            <ion-col size="4">
+                <ion-button size="small" color="tertiary" expand="block" shape="round" (click)="onPost()" [disabled]="!postTitle && !postContent">
+                    פרסם
+                </ion-button>
+            </ion-col>
+      </ion-row>
+    </ion-col>
+    </ion-row>
+  </ion-grid>

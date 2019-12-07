@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+
+  <ion-content *ngIf="article !== undefined" class="event-body">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="מרענן...">
+          </ion-refresher-content>
+      </ion-refresher>
+    <ion-list-header no-padding>
+        <ion-grid fixed>
+          <ion-row>
+          <ion-col size="4" style="margin-top: 2%;">
+              <ion-buttons  dir="rtl" class="event-body">
+                  <ion-back-button class="page-title" defaultHref="/news" text="לחדשות" icon="arrow-forward">
+                  </ion-back-button>
+                </ion-buttons>              
+          </ion-col>
+            <ion-col size="8">
+              <hr>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list-header>  
+        <ion-card class="event-card">
+          <ion-card-header dir="rtl" class="event-card">
+            <ion-card-title>{{ article.title }}</ion-card-title>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col size="12">
+                    <!-- <ion-card-subtitle class="date-item">{{ event.starts_at | date:'yy/MM/dd HH:mm' }} עד {{ event.ends_at | date:'HH:mm'}}</ion-card-subtitle> -->
+                </ion-col>
+                <ion-col size="12">
+                    <ion-row dir="ltr">
+                        <ion-col size="8" >
+                          <!-- <ion-icon class="type-icon" *ngFor="let type of event.types" [name]="type.name"></ion-icon> -->
+                        </ion-col>
+                        <!-- <ion-col dir="rtl" size="4" *ngIf="event.price > 0">{{event.price}} &#8362;</ion-col> -->
+                      </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-item>
+            <ion-img [src]="article.image_path"></ion-img>
+          </ion-item>
+          <ion-item dir="rtl" lines="none">
+            <!-- <ion-note class="location-note"><ion-icon name="pin"></ion-icon> {{ event.location }} </ion-note> -->
+          </ion-item>
+          <ion-item dir="rtl">
+              <!-- <ion-button size="default" fill="outline" color="primary" shape="round" (click)="onNav()">נווט למיקום <ion-icon name="navigate"></ion-icon></ion-button> -->
+            </ion-item>
+          <ion-card-content dir="rtl">
+            {{ article.description }}
+          </ion-card-content>
+          <ion-grid fixed>
+            <ion-row dir="rtl">
+              <ion-col size="12">
+                  <ion-item class="btn-item" lines="none" dir="rtl" no-padding>
+                      <!-- <ion-button size="default" color="primary" expand="block" shape="round"  *ngIf="article.url !== null" (click)="onPurchase()"> -->
+                        <!-- הרשמה לאירוע<ion-icon slot="start" name="add"></ion-icon> -->
+                      <!-- </ion-button> -->
+                          <ion-buttons  class="social-group" no-padding>
+                            <ion-button (click)="onShareFacebook(article)">
+                                <ion-icon class="social" style="color: #3b5998;" slot="icon-only" name="logo-facebook"></ion-icon>
+                            </ion-button>
+                            <ion-button (click)="onShareWhatsapp(article)">
+                              <ion-icon class="social" style="color: #1EBEA5;" slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            </ion-button>
+                          </ion-buttons>
+                  </ion-item>        
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <ion-note padding>תגובות ({{article.articleComments.length}})</ion-note>
+
+       <ion-card class="event-card">   
+         <ion-list>
+            <app-comment *ngFor="let comment of article.articleComments" [comment]="comment" [isArticle]="isArticle"></app-comment>
+          </ion-list>
+        </ion-card> 
+</ion-content>
+<ion-footer >
+  <app-post-comment [isArticle]="isArticle"></app-post-comment >
+</ion-footer>
+

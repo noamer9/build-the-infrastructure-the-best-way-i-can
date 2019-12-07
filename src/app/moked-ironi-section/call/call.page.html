@@ -1,0 +1,101 @@
+<app-header></app-header>
+
+
+<ion-content class="body">
+  <ion-item class="body head">
+    <ion-label>פנייה: מוקד-עירוני </ion-label>
+  </ion-item>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+
+            <ion-item class="body" dir="rtl">
+              <ion-label dir="rtl">סיווג פנייה:</ion-label>
+              <ion-select name="call_reasons" formControlName="call_reasons" placeholder="בחר" dir="rtl" interface="action-sheet">
+                <ion-select-option *ngFor="let reason of call_reasons">{{reason}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="body" dir="rtl">
+                <input id="avatar" style="display: none;" name="image" accept="image/*" type="file" (change)="onFileChange($event)">
+                
+                <ion-button class="avatar-btn" expand="block" shape="round" fill="clear" (click)="onChooseFile($event)">
+                    <ion-icon name="images" slot="end"></ion-icon>
+                  <ion-grid *ngIf="!asImage" fixed>
+                    <ion-row>
+                      <!-- <ion-col size="12">
+                        <ion-icon class="avatar-icon" style="color: #fff;" name="contact"></ion-icon>
+                      </ion-col> -->
+                      <ion-col size="12">
+                        <span class="avatar-text">הוספת תמונה</span>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-avatar *ngIf="imageUrl && asImage">
+                    <img [src]="imageUrl">
+                  </ion-avatar>
+                </ion-button>
+              </ion-item>
+
+
+            <ion-item class="body" dir="rtl">
+              <ion-input inputmode="text" name="first_name" type="text" placeholder="שם פרטי" formControlName="first_name"
+                required></ion-input>
+
+            </ion-item>
+            <ion-item class="body" dir="rtl">
+              <ion-input inputmode="text" name="last_name" type="text" placeholder="שם משפחה" formControlName="last_name"
+                required></ion-input>
+
+            </ion-item>
+            <ion-item class="body" dir="rtl">
+              <ion-input inputmode="text" name="city" type="text" placeholder="עיר מגורים" formControlName="city"
+                required></ion-input>
+
+            </ion-item>
+
+            <ion-item class="body" dir="rtl">
+              <ion-input inputmode="text" name="location" type="text" placeholder="הקלדת כתובת" formControlName="location"
+                required></ion-input>
+              <ion-item class="body">או</ion-item>
+              <ion-item class="body">
+                <ion-button expand="block" shape="round" (click)="findLocation()">זיהוי מיקום</ion-button>
+              </ion-item>
+            </ion-item>
+
+            <ion-item class="body" dir="rtl">
+                <ion-textarea inputmode="text" name="call_content" type="text" placeholder="תוכן פנייה" formControlName="call_content"
+                  required></ion-textarea>
+  
+              </ion-item>
+
+            <!-- <ion-item class="body" dir="rtl">
+                    <ion-button expand="block" shape="round" (click)="findLocation()" 
+                     
+                   >זיהוי מיקום</ion-button>
+  
+                 
+                </ion-item> -->
+
+           
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">שמור</ion-button>
+          </div>
+
+         
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12" [routerLink]="[ '/moked-ironi/calls', userId ]"> 
+           הפניות שלי
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

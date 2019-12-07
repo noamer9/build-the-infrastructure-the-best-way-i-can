@@ -1,0 +1,15 @@
+<ion-header dir="rtl" class="body">
+  <ion-toolbar class="body">
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">סרוגים</ion-title>
+    <div style="width: 40%; margin: 0 35%">
+      <ion-label class="subtitle">פורום הציונות הדתית</ion-label>
+    </div>
+    <ion-icon *ngIf="!avatarUrl" name="contact" slot="end" style="font-size: 43px;"></ion-icon>
+    <ion-avatar class="avatar" *ngIf="avatarUrl" slot="end">
+      <img [src]="avatarUrl">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>

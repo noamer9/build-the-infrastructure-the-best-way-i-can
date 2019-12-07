@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+
+<ion-content class="body">
+  <ion-item class="body head">
+    <ion-label>הרשמה - פרטי חבר</ion-label>
+  </ion-item>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data"> 
+        <ion-grid>
+          <ion-row  justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <div padding>
+                <ion-item class="body" dir="rtl">
+                  <ion-input  
+                  inputmode="text" 
+                  name="first_name" 
+                  type="text" 
+                  placeholder="שם פרטי" 
+                  formControlName="first_name" 
+                  required></ion-input>
+
+                </ion-item>
+                <ion-item class="body" dir="rtl">
+                    <ion-input  
+                    inputmode="text" 
+                    name="last_name" 
+                    type="text" 
+                    placeholder="שם משפחה" 
+                    formControlName="last_name" 
+                    required></ion-input>
+  
+                  </ion-item>
+                  <ion-item class="body" dir="rtl">
+                      <ion-input  
+                      inputmode="text" 
+                      name="city" 
+                      type="text" 
+                      placeholder="עיר מגורים" 
+                      formControlName="city" 
+                      required></ion-input>
+    
+                  </ion-item>
+                  <ion-item class="body" dir="rtl">
+                      <ion-label dir="rtl">מצב משפחתי:</ion-label>
+                      <ion-select name="relationship_status" formControlName="relationship_status" placeholder="מצב" dir="rtl" interface="action-sheet">
+                        <ion-select-option *ngFor="let status of relationshipStatus">{{status}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  <ion-item class="body" dir="rtl">
+                      <input id="avatar" style="display: none;" name="image" accept="image/*" type="file" (change)="onFileChange($event)">
+                      <ion-button class="avatar-btn" expand="block" shape="round" fill="clear" (click)="onChooseFile($event)">
+                          <ion-grid *ngIf="!asImage" fixed>
+                              <ion-row>
+                                <ion-col size="12">
+                                  <ion-icon class="avatar-icon" style="color: #fff;" name="contact"></ion-icon>
+                                </ion-col>
+                                <ion-col size="12">
+                                    <span class="avatar-text">הוספת תמונה</span>
+                                </ion-col>
+                              </ion-row>
+                            </ion-grid>
+                            <ion-avatar *ngIf="imageUrl && asImage">
+                              <img [src]="imageUrl">
+                            </ion-avatar>
+                      </ion-button>
+                  </ion-item>
+              </div>
+              <div padding>
+                <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">שמור</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+
+</ion-content>

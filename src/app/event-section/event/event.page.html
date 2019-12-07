@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+
+  <ion-content *ngIf="event !== undefined" class="event-body">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="מרענן...">
+          </ion-refresher-content>
+      </ion-refresher>
+    <ion-list-header no-padding>
+        <ion-grid fixed>
+          <ion-row>
+          <ion-col size="4" style="margin-top: 2%;">
+              <ion-buttons  dir="rtl" class="event-body">
+                  <ion-back-button class="page-title" defaultHref="/events" text="לאירועים" icon="arrow-forward">
+                  </ion-back-button>
+                </ion-buttons>              
+          </ion-col>
+            <ion-col size="8">
+              <hr>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list-header>  
+        <ion-card class="event-card">
+          <ion-card-header dir="rtl" class="event-card">
+            <ion-card-title>{{ event.title }}</ion-card-title>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col size="12">
+                    <ion-card-subtitle class="date-item">{{ event.starts_at | date:'yy/MM/dd HH:mm' }} עד {{ event.ends_at | date:'HH:mm'}}</ion-card-subtitle>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-row dir="ltr">
+                        <ion-col size="8" >
+                          <ion-icon class="type-icon" *ngFor="let type of event.types" [name]="type.name"></ion-icon>
+                        </ion-col>
+                        <ion-col dir="rtl" size="4" *ngIf="event.price > 0">{{event.price}} &#8362;</ion-col>
+                      </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+          <ion-item>
+            <ion-img [src]="event.image_path"></ion-img>
+          </ion-item>
+          <ion-item dir="rtl" lines="none">
+            <ion-note class="location-note" style="font-size: 14px;"><ion-icon name="pin"></ion-icon> {{ event.location }} </ion-note>
+          </ion-item>
+          <ion-item dir="rtl">
+              <ion-button size="default" fill="outline" color="primary" shape="round" (click)="onNav()">להגעה באמצעות ה- waze <ion-icon name="navigate"></ion-icon></ion-button>
+            </ion-item>
+          <ion-card-content dir="rtl">
+            {{ event.description }}
+          </ion-card-content>
+          <ion-grid fixed>
+            <ion-row dir="rtl">
+              <ion-col size="12">
+                  <ion-item class="btn-item" lines="none" dir="rtl" no-padding>
+                      <ion-button size="default" color="primary" expand="block" shape="round"  *ngIf="event.url !== null" (click)="onPurchase()">
+                        הרשמה לאירוע<ion-icon slot="start" name="add"></ion-icon>
+                      </ion-button>
+                          <ion-buttons dir="ltr"  class="social-group" no-padding>
+                            <ion-button (click)="onShareFacebook(event)">
+                                <ion-icon class="social" style="color: #3b5998;" slot="icon-only" name="logo-facebook"></ion-icon>
+                            </ion-button>
+                            <ion-button (click)="onShareWhatsapp(event)">
+                              <ion-icon class="social" style="color: #1EBEA5;" slot="icon-only" name="logo-whatsapp"></ion-icon>
+                            </ion-button>
+                          </ion-buttons>
+                  </ion-item>        
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <ion-item lines="none" style="height: 30px;">
+          <ion-icon name="text" style="color: #252a9b; font-size: 40px;" slot="end" no-padding></ion-icon>
+          <ion-note style="font-size: 14px; padding-top: 20px;" no-padding>תגובות ({{event.comments.length}}) </ion-note>
+        </ion-item>
+       <div class="comment-wrapper">   
+            <app-comment style="margin: 1px;" *ngFor="let comment of event.comments" [comment]="comment"></app-comment>
+        </div> 
+</ion-content>
+<ion-footer style="height: 60px;">
+  <app-post-comment></app-post-comment>
+</ion-footer>

@@ -1,0 +1,58 @@
+.body {
+    background-color: #dfe9f3;
+}
+
+.event-wrapper {
+    margin: 0 10px 15px 10px;
+    border-radius: 25%;
+}
+
+.page-title {
+    font-size: 20px;
+    color: #205edd;
+}
+
+hr {
+    height: 3px;
+    border-radius: 15%;
+    box-sizing: content-box;
+    background-color: #205edd;
+    border: none;
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+.type-icon {
+    color: #8f9193;
+    font-size: 23px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.date-item {
+    background-color: #1228a1;
+    color: #fff;
+    border-radius: 19px;
+    font-size: 12px;
+    margin-top: 2px;
+    padding: 3px 11px 4px 4px;
+}
+
+.social-group {
+    margin-right: 0 17px;
+}
+
+.btn-item {
+    .item-inner {
+        padding-right: 0px!important;
+     }
+}
+
+.price-phone{
+    ion-icon{
+        font-size: 120%;
+        color: #1228a1;
+    }
+}

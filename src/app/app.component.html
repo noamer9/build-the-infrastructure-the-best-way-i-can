@@ -1,0 +1,37 @@
+<ion-app dir="rtl">
+    <ion-split-pane  dir="rtl">
+      <!--  our side menu  -->
+      <ion-menu class="app-menu" side="end" type="reveal">
+        <ion-header class="app-menu">
+          <ion-toolbar class="app-menu">
+            <ion-title class="app-menu">תפריט</ion-title>
+            <ion-buttons slot="end">
+                <ion-button  (click)="closeMenu()">
+                  <ion-icon slot="icon-only" name="close"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="app-menu">
+          <ion-list class="app-menu" no-padding>
+            <ion-menu-toggle class="app-menu" auto-hide="false" *ngFor="let p of pages">
+              <app-menu-item class="app-menu" [link]="p" [isLogin]="isLogin"></app-menu-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+        <ion-footer class="app-menu">
+            <ion-item *ngIf="isLogin" class="active-logout app-menu" (click)="onLogout()">
+                    <ion-icon class="app-menu" name="log-out" slot="start"></ion-icon>
+                    <ion-label class="app-menu">התנתק</ion-label>
+                </ion-item>
+                <ion-item *ngIf="!isLogin" [routerLink]="loginPage.url" class="active-logout app-menu" (click)="menuCtrl.close()" routerDirection="root">
+                    <ion-icon class="app-menu" [name]="loginPage.icon" slot="start"></ion-icon>
+                    <ion-label class="app-menu">{{ loginPage.title }}</ion-label>
+                </ion-item>
+        </ion-footer>
+      </ion-menu>
+
+      <!-- the main content -->
+      <ion-router-outlet main></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

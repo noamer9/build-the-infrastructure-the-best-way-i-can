@@ -1,0 +1,5 @@
+<ion-item  class="app-menu" [routerLink]="link.url" [class.active-item]="link.active" routerDirection="root" *ngIf="isLogin || !link.url.startsWith('/auth')">
+    <ion-label>{{ link.title }}</ion-label>
+    <ion-icon style="color: #fff;" name="arrow-round-back"></ion-icon>
+</ion-item>
+
